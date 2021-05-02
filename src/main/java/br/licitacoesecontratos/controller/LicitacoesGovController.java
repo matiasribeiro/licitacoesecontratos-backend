@@ -3,6 +3,7 @@ package br.licitacoesecontratos.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ public class LicitacoesGovController {
 	
 	
 	@GetMapping
+	@Cacheable(value = "listarTodasLicitacoes")
 	public List<LicitacoesGovForm> listarTodas() {
 		
 		List<Licitacoes> licitacoes = licitacoesRepositorio.findAll();
