@@ -1,0 +1,5 @@
+br/licitacoesecontratos/form/LicitacoesGovForm.class
+br/licitacoesecontratos/LicitacoesecontratosApplication.class
+br/licitacoesecontratos/model/Licitacoes.class
+br/licitacoesecontratos/repository/ILicitacoesGovRepositorio.class
+br/licitacoesecontratos/controller/LicitacoesGovController.class

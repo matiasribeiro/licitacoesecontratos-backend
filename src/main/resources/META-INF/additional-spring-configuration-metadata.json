@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "app.user",
+    "type": "java.lang.String",
+    "description": "A description for 'app.user'"
+  },
+  {
+    "name": "app.nome",
+    "type": "java.lang.String",
+    "description": "A description for 'app.nome'"
+  },
+  {
+    "name": "app.link",
+    "type": "java.lang.String",
+    "description": "A description for 'app.link'"
+  }
+]}

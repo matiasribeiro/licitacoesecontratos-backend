@@ -1,0 +1,5 @@
+/opt/ws_spring/licitacoesecontratosBackend-main/licitacoesecontratosBackend/src/main/java/br/licitacoesecontratos/controller/LicitacoesGovController.java
+/opt/ws_spring/licitacoesecontratosBackend-main/licitacoesecontratosBackend/src/main/java/br/licitacoesecontratos/repository/ILicitacoesGovRepositorio.java
+/opt/ws_spring/licitacoesecontratosBackend-main/licitacoesecontratosBackend/src/main/java/br/licitacoesecontratos/form/LicitacoesGovForm.java
+/opt/ws_spring/licitacoesecontratosBackend-main/licitacoesecontratosBackend/src/main/java/br/licitacoesecontratos/model/Licitacoes.java
+/opt/ws_spring/licitacoesecontratosBackend-main/licitacoesecontratosBackend/src/main/java/br/licitacoesecontratos/LicitacoesecontratosApplication.java
