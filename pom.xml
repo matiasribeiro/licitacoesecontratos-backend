@@ -12,7 +12,7 @@
 	<packaging>jar</packaging>
 	<groupId>br.licitacoesecontratos</groupId>
 	<artifactId>licitacoesecontratos</artifactId>
-	<version>0.0.6-SNAPSHOT</version>
+	<version>0.0.10-SNAPSHOT</version>
 	<name>licitacoesecontratos</name>
 	<description>Projeto para exibir informações de licitações e contratos do governo do estado da Paraíba e do município de João Pessoa</description>
 	<properties>
@@ -74,7 +74,15 @@
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-cache</artifactId>
 		</dependency>
-				
+		
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+
+		</dependency>
+		
+        
 	</dependencies>
 	
         

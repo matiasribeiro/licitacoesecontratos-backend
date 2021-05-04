@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import br.licitacoesecontratos.model.Licitacoes;
 
-@Repository
 public interface ILicitacoesGovRepositorio extends MongoRepository<Licitacoes,String>{
 	
 	Optional<Licitacoes> findByNumero(String numero);
