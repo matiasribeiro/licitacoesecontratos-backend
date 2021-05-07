@@ -30,8 +30,6 @@ public class LicitacoesGovForm {
 	
 	
 	private List<Contratos> contratos = new ArrayList<>();
-	
-	
 	private List<LicitacoesGovForm> licitacoesForm = new ArrayList<LicitacoesGovForm>();
 	
 	

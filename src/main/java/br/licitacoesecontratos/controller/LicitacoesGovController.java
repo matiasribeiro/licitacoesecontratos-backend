@@ -24,7 +24,6 @@ public class LicitacoesGovController {
 	@Autowired
 	private ILicitacoesGovRepositorio licitacoesRepositorio;
 	
-	
 	@GetMapping
 	@Cacheable(value = "listarTodasLicitacoes")
 	public List<LicitacoesGovForm> listarTodas() throws JsonProcessingException {
