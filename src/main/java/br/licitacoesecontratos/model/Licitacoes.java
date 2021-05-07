@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Document(collection = "licitacoes_prod")
 public class Licitacoes implements Serializable{
 
+	
 
 	private static final long serialVersionUID = 1L;
 
@@ -30,13 +31,13 @@ public class Licitacoes implements Serializable{
 	@Field(name="nome_municipio")
 	private String municipio;
 	
-	@Field(name="cd_ugestira")
+	@Field(name="cd_ugestora")
 	private String codigoUnidadeGestora;
 	
-	@Field(name="juridicionado_id")
+	@Field(name="jurisdicionado_id")
 	private String idJuridicionado;
 	
-	@Field(name="nome_juridicionado")
+	@Field(name="nome_jurisdicionado")
 	private String nomeJuridicionado;
 	
 	@Field(name="valor_estimado_licitacao")
