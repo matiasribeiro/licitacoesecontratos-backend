@@ -19,11 +19,12 @@ import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties
 @EntityScan(basePackages = {"br.licitacoesecontratos.model"} )
 @EnableMongoRepositories(basePackages = {"br.licitacoesecontratos.repository"})
 @EnableSpringDataWebSupport
-@EnableEncryptableProperties
 @EnableCaching
 public class LicitacoesecontratosApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(LicitacoesecontratosApplication.class, args);
 	}
+	
+	
 }

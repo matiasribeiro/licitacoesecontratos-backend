@@ -1,8 +1,12 @@
 package br.licitacoesecontratos.model;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Contratos {
+public class Contratos implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@JsonProperty("NUMERO_CONTRATO")
 	private String NUMERO_CONTRATO;

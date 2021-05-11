@@ -1,5 +1,6 @@
 package br.licitacoesecontratos.form;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import br.licitacoesecontratos.model.Contratos;
 import br.licitacoesecontratos.model.Licitacoes;
 
-public class LicitacoesGovForm {
+public class LicitacoesGovForm implements Serializable {
 	
 	private String numero;
 	private String objetivo;
