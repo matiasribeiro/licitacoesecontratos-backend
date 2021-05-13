@@ -12,18 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import br.licitacoesecontratos.form.LicitacoesGovForm;
+import br.licitacoesecontratos.form.LicitacoesForm;
 import br.licitacoesecontratos.model.Licitacoes;
-import br.licitacoesecontratos.repository.ILicitacoesGovRepositorio;
+import br.licitacoesecontratos.repository.ILicitacoesRepositorio;
 
 
 @RestController
 @RequestMapping(value = "/licitacoes")
 @CrossOrigin(origins = "*")
-public class LicitacoesGovController {
+public class LicitacoesController {
 
 	@Autowired
-	private ILicitacoesGovRepositorio licitacoesRepositorio;
+	private ILicitacoesRepositorio licitacoesRepositorio;
 	
 	@Autowired
 	RedisCacheManager redisCacheManager;
@@ -31,14 +31,16 @@ public class LicitacoesGovController {
 	
 	@GetMapping
 	@Cacheable(value = "listarTodasLicitacoes", key="#root.method.name")
-	public List<LicitacoesGovForm> listarTodas() throws JsonProcessingException {
+	public List<LicitacoesForm> listarTodas() throws JsonProcessingException {
 		
 		
 		List<Licitacoes> licitacoes = licitacoesRepositorio.findAll();
-		List<LicitacoesGovForm> licitacaoGovForm = new LicitacoesGovForm().converter(licitacoes);
+		List<LicitacoesForm> licitacaoGovForm = new LicitacoesForm().converter(licitacoes);
 		
 		return licitacaoGovForm;
 	}
+	
+	
 	
 	
 	
