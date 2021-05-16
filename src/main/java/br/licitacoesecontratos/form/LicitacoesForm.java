@@ -9,7 +9,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import br.licitacoesecontratos.model.Contratos;
 import br.licitacoesecontratos.model.Licitacoes;
 
-public class LicitacoesGovForm implements Serializable {
+public class LicitacoesForm implements Serializable {
 	
 	private String numero;
 	private String objetivo;
@@ -31,15 +31,15 @@ public class LicitacoesGovForm implements Serializable {
 	
 	
 	private List<Contratos> contratos = new ArrayList<>();
-	private List<LicitacoesGovForm> licitacoesForm = new ArrayList<LicitacoesGovForm>();
+	private List<LicitacoesForm> licitacoesForm = new ArrayList<LicitacoesForm>();
 	
 	
 	
-	public List<LicitacoesGovForm> converter(List<Licitacoes> licitacoes) throws JsonProcessingException {
+	public List<LicitacoesForm> converter(List<Licitacoes> licitacoes) throws JsonProcessingException {
 		
 		for(Licitacoes licitacao : licitacoes) {
 
-			LicitacoesGovForm form = new LicitacoesGovForm();
+			LicitacoesForm form = new LicitacoesForm();
 			form.setNumero(licitacao.getNumero());
 			form.setObjetivo(licitacao.getObjetivo());
 			form.setModalidade(licitacao.getModalidade());
