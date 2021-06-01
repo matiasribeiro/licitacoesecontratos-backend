@@ -9,9 +9,10 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Document(collection = "licitacoes_prod")
 public class Licitacoes implements Serializable{
 
-	
-
 	private static final long serialVersionUID = 1L;
+	
+	public static final int GOVERNO_ESTADO_PB = 1;
+	public static final int PREFEITURA_MUNICIPAL_JP = 2;
 
 	@Field(name="numero_licitacao")
 	private String numero;
