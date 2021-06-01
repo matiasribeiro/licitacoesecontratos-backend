@@ -1,15 +1,10 @@
 package br.licitacoesecontratos.repository;
 
-import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
 
 import br.licitacoesecontratos.model.Licitacoes;
 
-public interface ILicitacoesRepositorio extends MongoRepository<Licitacoes,String>{
+public interface ILicitacoesRepositorio extends MongoRepository<Licitacoes,String>, ILicitacoesRepositorioCustomizado {
 	
-	Optional<Licitacoes> findByNumero(String numero);
-
-
 }
