@@ -9,14 +9,17 @@ import static org.springframework.data.mongodb.core.aggregation.Aggregation.sort
 
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 
 import br.licitacoesecontratos.model.Licitacoes;
+import br.licitacoesecontratos.model.views.AnoVsValor;
 import br.licitacoesecontratos.model.views.OrgaoVsValor;
 import br.licitacoesecontratos.repository.ILicitacoesRepositorioCustomizado;
 
@@ -31,6 +34,14 @@ public class ILicitacoesRepositorioCustomizadoImpl implements ILicitacoesReposit
 		this.mongoTemplate = mongoTemplate;
 	}
 
+	@Override
+	public Licitacoes getLicitacao(String id) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("_id").is(new ObjectId(id)));
+		Licitacoes licitacao = mongoTemplate.findOne(query, Licitacoes.class);
+		return licitacao;
+	}
+	
 	@Override
 	public List<OrgaoVsValor> getOrgaosSumValor() {
 		Aggregation agg = newAggregation(
@@ -132,6 +143,23 @@ public class ILicitacoesRepositorioCustomizadoImpl implements ILicitacoesReposit
         return result;
 	}
 	
+	
+	
+	@Override
+	public List<AnoVsValor> getAnosSumValor(int entidadeGovernamental) {
+		Aggregation agg = newAggregation(
+            match(Criteria.where("entidadeGovernamental").is(getEntidade(entidadeGovernamental))),
+            group("anoHomologacao").sum("valorLicitado").as("valorTotal"),
+            project("valorTotal").and("anoHomologacao").previousOperation(),
+            sort(Sort.Direction.DESC, "valorTotal")
+        );
+
+        AggregationResults<AnoVsValor> groupResults = mongoTemplate.aggregate(agg, Licitacoes.class, AnoVsValor.class);
+        List<AnoVsValor> result = groupResults.getMappedResults();
+        
+        return result;
+	}
+
 	private String getEntidade(int entidadeGovernamental) {
 		if(entidadeGovernamental == Licitacoes.GOVERNO_ESTADO_PB)
 			entidade = "Governo da Paraíba";

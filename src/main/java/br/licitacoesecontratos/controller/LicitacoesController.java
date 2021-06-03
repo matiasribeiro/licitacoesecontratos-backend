@@ -16,6 +16,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import br.licitacoesecontratos.form.LicitacoesForm;
 import br.licitacoesecontratos.model.Licitacoes;
+import br.licitacoesecontratos.model.views.AnoVsValor;
 import br.licitacoesecontratos.model.views.OrgaoVsValor;
 import br.licitacoesecontratos.repository.ILicitacoesRepositorio;
 
@@ -35,12 +36,16 @@ public class LicitacoesController {
 	@GetMapping
 	@Cacheable(value = "listarTodasLicitacoes", key="#root.method.name")
 	public List<LicitacoesForm> listarTodas() throws JsonProcessingException {
-		
-		
 		List<Licitacoes> licitacoes = licitacoesRepositorio.findAll();
 		List<LicitacoesForm> licitacaoGovForm = new LicitacoesForm().converter(licitacoes);
-		
 		return licitacaoGovForm;
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<LicitacoesForm> listarLicitacao(@PathVariable String id) throws JsonProcessingException {
+		Licitacoes licitacao = licitacoesRepositorio.getLicitacao(id);
+		LicitacoesForm licitacoesForm = new LicitacoesForm().converter(licitacao);
+		return ResponseEntity.ok(licitacoesForm);
 	}
 	
 	
@@ -48,6 +53,12 @@ public class LicitacoesController {
 	public ResponseEntity<List<OrgaoVsValor>> listarOrgaosVsValores() {
 		List<OrgaoVsValor> orgaosVsValores = licitacoesRepositorio.getOrgaosSumValor();
 		return ResponseEntity.ok(orgaosVsValores);
+	}
+	
+	@GetMapping("/{entidadeGovernamental}/anos")
+	public ResponseEntity<List<AnoVsValor>> listarAnosVsValores(@PathVariable int entidadeGovernamental) {
+		List<AnoVsValor> anosVsValores = licitacoesRepositorio.getAnosSumValor(entidadeGovernamental);
+		return ResponseEntity.ok(anosVsValores);
 	}
 	
 	@GetMapping("/{entidadeGovernamental}/orgaos")
