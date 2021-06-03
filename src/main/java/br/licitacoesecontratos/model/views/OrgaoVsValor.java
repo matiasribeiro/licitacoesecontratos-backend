@@ -1,14 +1,16 @@
 package br.licitacoesecontratos.model.views;
 
+import java.math.BigDecimal;
+
 public class OrgaoVsValor {
 	
 	//Nome do orgão da administração
 	private String nomeJuridicionado;
 	
 	//Somatório do valor de todas as licitações do orgão
-	private Double valorTotal;
+	private BigDecimal valorTotal;
 
-	public OrgaoVsValor(String nomeJuridicionado, Double valorTotal) {
+	public OrgaoVsValor(String nomeJuridicionado, BigDecimal valorTotal) {
 		super();
 		this.nomeJuridicionado = nomeJuridicionado;
 		this.valorTotal = valorTotal;
@@ -22,11 +24,11 @@ public class OrgaoVsValor {
 		this.nomeJuridicionado = nomeJuridicionado;
 	}
 
-	public Double getValorTotal() {
+	public BigDecimal getValorTotal() {
 		return valorTotal;
 	}
 
-	public void setValorTotal(Double valorTotal) {
+	public void setValorTotal(BigDecimal valorTotal) {
 		this.valorTotal = valorTotal;
 	}
 
@@ -34,7 +36,5 @@ public class OrgaoVsValor {
 	public String toString() {
 		return "OrgaoVsValor [nomeJuridicionado=" + nomeJuridicionado + ", valorTotal=" + valorTotal + "]";
 	}
-	
-	
 	
 }

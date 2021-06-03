@@ -1,8 +1,10 @@
 package br.licitacoesecontratos.form;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -11,16 +13,22 @@ import br.licitacoesecontratos.model.Licitacoes;
 
 public class LicitacoesForm implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private String id;
 	private String numero;
 	private String objetivo;
 	private String modalidade;
-	private String valorLicitado;
+	private BigDecimal valorLicitado;
 	private String protocolo;
 	private String municipio;
-	private String codigoUnidadeGestora;
-	private String idJuridicionado;
+	private int codigoUnidadeGestora;
+	private int idJuridicionado;
 	private String nomeJuridicionado;
-	private String valorEstimado;
+	private BigDecimal valorEstimado;
 	private String dataHomologacao;
 	private String anoHomologacao;
 	private String nomeEstagioProcessual;
@@ -40,6 +48,8 @@ public class LicitacoesForm implements Serializable {
 		for(Licitacoes licitacao : licitacoes) {
 
 			LicitacoesForm form = new LicitacoesForm();
+			
+			form.setId(licitacao.getId().toString());
 			form.setNumero(licitacao.getNumero());
 			form.setObjetivo(licitacao.getObjetivo());
 			form.setModalidade(licitacao.getModalidade());
@@ -50,7 +60,7 @@ public class LicitacoesForm implements Serializable {
 			form.setCodigoUnidadeGestora(licitacao.getCodigoUnidadeGestora());
 			form.setIdJuridicionado(licitacao.getIdJuridicionado());
 			form.setNomeJuridicionado(licitacao.getNomeJuridicionado());
-			form.setValorEstimado(licitacao.getValorEstimado().replace("NaN", ""));
+			form.setValorEstimado(BigDecimal.valueOf(Double.parseDouble(licitacao.getValorEstimado().replace("NaN", "0"))));
 			form.setDataHomologacao(licitacao.getDataHomologacao());
 			form.setAnoHomologacao(licitacao.getAnoHomologacao());
 			form.setNomeEstagioProcessual(licitacao.getNomeEstagioProcessual());
@@ -66,9 +76,44 @@ public class LicitacoesForm implements Serializable {
 		return licitacoesForm;
 	}
 	
+	public LicitacoesForm converter(Licitacoes licitacao) throws JsonProcessingException {
+		
+
+		LicitacoesForm form = new LicitacoesForm();
+		
+		form.setId(licitacao.getId().toString());
+		form.setNumero(licitacao.getNumero());
+		form.setObjetivo(licitacao.getObjetivo());
+		form.setModalidade(licitacao.getModalidade());
+		form.setValorLicitado(licitacao.getValorLicitado());
+		
+		form.setProtocolo(licitacao.getProtocolo());
+		form.setMunicipio(licitacao.getMunicipio().replace("NaN", ""));
+		form.setCodigoUnidadeGestora(licitacao.getCodigoUnidadeGestora());
+		form.setIdJuridicionado(licitacao.getIdJuridicionado());
+		form.setNomeJuridicionado(licitacao.getNomeJuridicionado());
+		form.setValorEstimado(BigDecimal.valueOf(Double.parseDouble(licitacao.getValorEstimado().replace("NaN", "0"))));
+		form.setDataHomologacao(licitacao.getDataHomologacao());
+		form.setAnoHomologacao(licitacao.getAnoHomologacao());
+		form.setNomeEstagioProcessual(licitacao.getNomeEstagioProcessual());
+		form.setNomeSetorAtual(licitacao.getNomeSetorAtual());
+		form.setUrl(licitacao.getUrl());
+		form.setEntidadeGovernamental(licitacao.getEntidadeGovernamental());
+		form.setNumeroProcesso(licitacao.getNumeroProcesso());
+		
+		//form.setContratos(licitacao.getContratos());
+
+		return form;
+	}
 	
-	
-	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public String getNumero() {
 		return numero;
 	}
@@ -90,10 +135,10 @@ public class LicitacoesForm implements Serializable {
 	public void setModalidade(String modalidade) {
 		this.modalidade = modalidade;
 	}
-	public String getValorLicitado() {
+	public BigDecimal getValorLicitado() {
 		return valorLicitado;
 	}
-	public void setValorLicitado(String valorLicitado) {
+	public void setValorLicitado(BigDecimal valorLicitado) {
 		this.valorLicitado = valorLicitado;
 	}
 
@@ -128,28 +173,28 @@ public class LicitacoesForm implements Serializable {
 
 
 
-	public String getCodigoUnidadeGestora() {
+	public int getCodigoUnidadeGestora() {
 		return codigoUnidadeGestora;
 	}
 
 
 
 
-	public void setCodigoUnidadeGestora(String codigoUnidadeGestora) {
+	public void setCodigoUnidadeGestora(int codigoUnidadeGestora) {
 		this.codigoUnidadeGestora = codigoUnidadeGestora;
 	}
 
 
 
 
-	public String getIdJuridicionado() {
+	public int getIdJuridicionado() {
 		return idJuridicionado;
 	}
 
 
 
 
-	public void setIdJuridicionado(String idJuridicionado) {
+	public void setIdJuridicionado(int idJuridicionado) {
 		this.idJuridicionado = idJuridicionado;
 	}
 
@@ -170,14 +215,14 @@ public class LicitacoesForm implements Serializable {
 
 
 
-	public String getValorEstimado() {
+	public BigDecimal getValorEstimado() {
 		return valorEstimado;
 	}
 
 
 
 
-	public void setValorEstimado(String valorEstimado) {
+	public void setValorEstimado(BigDecimal valorEstimado) {
 		this.valorEstimado = valorEstimado;
 	}
 

@@ -2,9 +2,14 @@ package br.licitacoesecontratos.repository;
 
 import java.util.List;
 
+import br.licitacoesecontratos.model.Licitacoes;
+import br.licitacoesecontratos.model.views.AnoVsValor;
 import br.licitacoesecontratos.model.views.OrgaoVsValor;
 
 public interface ILicitacoesRepositorioCustomizado {
+	
+	//Busca uma licitação pelo ID
+	public Licitacoes getLicitacao(String id);
 	
 	//Lista todos os orgãos vs somatório de valores das licitações
 	public List<OrgaoVsValor> getOrgaosSumValor();
@@ -23,4 +28,8 @@ public interface ILicitacoesRepositorioCustomizado {
 	
 	//Lista todos os orgãos vs somatório de valores das licitações por entidade governamental e dispensa COVID-19
 	public List<OrgaoVsValor> getOrgaosSumValorCovid(int entidadeGovernamental);
+	
+	//Lista todos os anos vs somatório de valores das licitações por entidade governamental
+	public List<AnoVsValor> getAnosSumValor(int entidadeGovernamental);
+	
 }

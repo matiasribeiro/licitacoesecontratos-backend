@@ -1,8 +1,10 @@
 package br.licitacoesecontratos.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -14,6 +16,9 @@ public class Licitacoes implements Serializable{
 	public static final int GOVERNO_ESTADO_PB = 1;
 	public static final int PREFEITURA_MUNICIPAL_JP = 2;
 
+	@Field(name="_id")
+	private ObjectId id;
+	
 	@Field(name="numero_licitacao")
 	private String numero;
 	
@@ -24,7 +29,7 @@ public class Licitacoes implements Serializable{
 	private String modalidade;
 	
 	@Field(name="valor_licitado_licitacao")
-	private  String valorLicitado;
+	private  BigDecimal valorLicitado;
 	
 	@Field(name="protocolo_licitacao")
 	private String protocolo;
@@ -33,10 +38,10 @@ public class Licitacoes implements Serializable{
 	private String municipio;
 	
 	@Field(name="cd_ugestora")
-	private String codigoUnidadeGestora;
+	private int codigoUnidadeGestora;
 	
 	@Field(name="jurisdicionado_id")
-	private String idJuridicionado;
+	private int idJuridicionado;
 	
 	@Field(name="nome_jurisdicionado")
 	private String nomeJuridicionado;
@@ -65,14 +70,19 @@ public class Licitacoes implements Serializable{
 	@Field(name="NUMERO_PROCESSO_LICITACAO")
 	private String numeroProcesso;
 	
-	
 	@Field(name="CONTRATOS")
 	private List<Contratos> contratos;
 	
-	
 	public Licitacoes() {}
 	
-	
+	public ObjectId getId() {
+		return id;
+	}
+
+	public void setId(ObjectId id) {
+		this.id = id;
+	}
+
 	public String getNumero() {
 		return numero;
 	}
@@ -97,11 +107,11 @@ public class Licitacoes implements Serializable{
 		this.modalidade = modalidade;
 	}
 
-	public String getValorLicitado() {
+	public BigDecimal getValorLicitado() {
 		return valorLicitado;
 	}
 
-	public void setValorLicitado(String valorLicitado) {
+	public void setValorLicitado(BigDecimal valorLicitado) {
 		this.valorLicitado = valorLicitado;
 	}
 
@@ -129,19 +139,19 @@ public class Licitacoes implements Serializable{
 		this.municipio = municipio;
 	}
 
-	public String getCodigoUnidadeGestora() {
+	public int getCodigoUnidadeGestora() {
 		return codigoUnidadeGestora;
 	}
 
-	public void setCodigoUnidadeGestora(String codigoUnidadeGestora) {
+	public void setCodigoUnidadeGestora(int codigoUnidadeGestora) {
 		this.codigoUnidadeGestora = codigoUnidadeGestora;
 	}
 
-	public String getIdJuridicionado() {
+	public int getIdJuridicionado() {
 		return idJuridicionado;
 	}
 
-	public void setIdJuridicionado(String idJuridicionado) {
+	public void setIdJuridicionado(int idJuridicionado) {
 		this.idJuridicionado = idJuridicionado;
 	}
 
