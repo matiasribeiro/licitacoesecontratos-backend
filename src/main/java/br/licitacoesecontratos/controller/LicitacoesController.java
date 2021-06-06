@@ -17,6 +17,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import br.licitacoesecontratos.form.LicitacoesForm;
 import br.licitacoesecontratos.model.Licitacoes;
 import br.licitacoesecontratos.model.views.AnoVsValor;
+import br.licitacoesecontratos.model.views.LicitacoesCount;
+import br.licitacoesecontratos.model.views.LicitacoesSum;
 import br.licitacoesecontratos.model.views.OrgaoVsValor;
 import br.licitacoesecontratos.repository.ILicitacoesRepositorio;
 
@@ -48,6 +50,17 @@ public class LicitacoesController {
 		return ResponseEntity.ok(licitacoesForm);
 	}
 	
+	@GetMapping("/total")
+	public ResponseEntity<List<LicitacoesCount>> listarLicitacoesTotal() {
+		List<LicitacoesCount> licitacoesTotal = licitacoesRepositorio.getLicitacoesTotal();
+		return ResponseEntity.ok(licitacoesTotal);
+	}
+	
+	@GetMapping("/soma")
+	public ResponseEntity<List<LicitacoesSum>> listarLicitacoesSoma() {
+		List<LicitacoesSum> licitacoesSoma = licitacoesRepositorio.getLicitacoesSoma();
+		return ResponseEntity.ok(licitacoesSoma);
+	}
 	
 	@GetMapping("/orgaos")
 	public ResponseEntity<List<OrgaoVsValor>> listarOrgaosVsValores() {
@@ -90,4 +103,6 @@ public class LicitacoesController {
 		List<OrgaoVsValor> orgaosVsValores = licitacoesRepositorio.getOrgaosSumValorCovid(entidadeGovernamental);
 		return ResponseEntity.ok(orgaosVsValores);
 	}
+	
+	
 }
