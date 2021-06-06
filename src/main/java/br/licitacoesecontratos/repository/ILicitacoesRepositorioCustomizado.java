@@ -4,12 +4,18 @@ import java.util.List;
 
 import br.licitacoesecontratos.model.Licitacoes;
 import br.licitacoesecontratos.model.views.AnoVsValor;
+import br.licitacoesecontratos.model.views.LicitacoesCount;
+import br.licitacoesecontratos.model.views.LicitacoesSum;
 import br.licitacoesecontratos.model.views.OrgaoVsValor;
 
 public interface ILicitacoesRepositorioCustomizado {
 	
 	//Busca uma licitação pelo ID
 	public Licitacoes getLicitacao(String id);
+	
+	public List<LicitacoesCount> getLicitacoesTotal();
+	
+	public List<LicitacoesSum> getLicitacoesSoma();
 	
 	//Lista todos os orgãos vs somatório de valores das licitações
 	public List<OrgaoVsValor> getOrgaosSumValor();

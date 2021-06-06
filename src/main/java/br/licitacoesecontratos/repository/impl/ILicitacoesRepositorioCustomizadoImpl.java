@@ -20,6 +20,8 @@ import org.springframework.data.mongodb.core.query.Query;
 
 import br.licitacoesecontratos.model.Licitacoes;
 import br.licitacoesecontratos.model.views.AnoVsValor;
+import br.licitacoesecontratos.model.views.LicitacoesCount;
+import br.licitacoesecontratos.model.views.LicitacoesSum;
 import br.licitacoesecontratos.model.views.OrgaoVsValor;
 import br.licitacoesecontratos.repository.ILicitacoesRepositorioCustomizado;
 
@@ -42,6 +44,37 @@ public class ILicitacoesRepositorioCustomizadoImpl implements ILicitacoesReposit
 		return licitacao;
 	}
 	
+	@Override
+	public List<LicitacoesCount> getLicitacoesTotal() {
+		Aggregation agg = newAggregation(
+            match(Criteria.where("entidadeGovernamental").exists(true)),
+            group("entidadeGovernamental").count().as("totalLicitacoes"),
+            project("totalLicitacoes").and("entidadeGovernamental").previousOperation(),
+            sort(Sort.Direction.DESC, "totalLicitacoes")
+        );
+
+        AggregationResults<LicitacoesCount> groupResults = mongoTemplate.aggregate(agg, Licitacoes.class, LicitacoesCount.class);
+        List<LicitacoesCount> result = groupResults.getMappedResults();
+        
+        return result;
+	}
+
+	@Override
+	public List<LicitacoesSum> getLicitacoesSoma() {
+		Aggregation agg = newAggregation(
+            match(Criteria.where("entidadeGovernamental").exists(true)),
+            group("entidadeGovernamental").sum("valorLicitado").as("valorTotal"),
+            project("valorTotal").and("entidadeGovernamental").previousOperation(),
+            sort(Sort.Direction.DESC, "valorTotal")
+                
+        );
+
+        AggregationResults<LicitacoesSum> groupResults = mongoTemplate.aggregate(agg, Licitacoes.class, LicitacoesSum.class);
+        List<LicitacoesSum> result = groupResults.getMappedResults();
+        
+        return result;
+	}
+
 	@Override
 	public List<OrgaoVsValor> getOrgaosSumValor() {
 		Aggregation agg = newAggregation(
@@ -151,7 +184,7 @@ public class ILicitacoesRepositorioCustomizadoImpl implements ILicitacoesReposit
             match(Criteria.where("entidadeGovernamental").is(getEntidade(entidadeGovernamental))),
             group("anoHomologacao").sum("valorLicitado").as("valorTotal"),
             project("valorTotal").and("anoHomologacao").previousOperation(),
-            sort(Sort.Direction.DESC, "valorTotal")
+            sort(Sort.Direction.ASC, "anoHomologacao")
         );
 
         AggregationResults<AnoVsValor> groupResults = mongoTemplate.aggregate(agg, Licitacoes.class, AnoVsValor.class);
