@@ -24,11 +24,11 @@ public class LicitacoesSum {
 		this.entidadeGovernamental = entidadeGovernamental;
 	}
 
-	public BigDecimal getTotalLicitacoes() {
+	public BigDecimal getValorTotal() {
 		return valorTotal;
 	}
 
-	public void setTotalLicitacoes(BigDecimal valorTotal) {
+	public void setValorTotal(BigDecimal valorTotal) {
 		this.valorTotal = valorTotal;
 	}
 
