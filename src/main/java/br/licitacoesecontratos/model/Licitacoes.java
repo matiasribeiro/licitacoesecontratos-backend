@@ -70,11 +70,13 @@ public class Licitacoes implements Serializable{
 	@Field(name="NUMERO_PROCESSO_LICITACAO")
 	private String numeroProcesso;
 	
-	@Field(name="CONTRATOS")
+	@Field(name="contratos")
 	private List<Contratos> contratos;
 	
 	public Licitacoes() {}
 	
+	
+
 	public ObjectId getId() {
 		return id;
 	}
@@ -227,9 +229,11 @@ public class Licitacoes implements Serializable{
 		this.numeroProcesso = numeroProcesso;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Licitacoes [numero=" + numero + ", objetivo=" + objetivo + ", modalidade=" + modalidade
+		return "Licitacoes [id=" + id + ", numero=" + numero + ", objetivo=" + objetivo + ", modalidade=" + modalidade
 				+ ", valorLicitado=" + valorLicitado + ", protocolo=" + protocolo + ", municipio=" + municipio
 				+ ", codigoUnidadeGestora=" + codigoUnidadeGestora + ", idJuridicionado=" + idJuridicionado
 				+ ", nomeJuridicionado=" + nomeJuridicionado + ", valorEstimado=" + valorEstimado + ", dataHomologacao="
@@ -238,6 +242,7 @@ public class Licitacoes implements Serializable{
 				+ ", entidadeGovernamental=" + entidadeGovernamental + ", numeroProcesso=" + numeroProcesso
 				+ ", contratos=" + contratos + "]";
 	}
+
 	
 	
 	

@@ -38,4 +38,7 @@ public interface ILicitacoesRepositorioCustomizado {
 	//Lista todos os anos vs somatório de valores das licitações por entidade governamental
 	public List<AnoVsValor> getAnosSumValor(int entidadeGovernamental);
 	
+	//Lista todos os anos vs somatório de valores dos contratos por entidade governamental
+	public List<AnoVsValor> getContratosAnosSumValor(int entidadeGovernamental);
+	
 }

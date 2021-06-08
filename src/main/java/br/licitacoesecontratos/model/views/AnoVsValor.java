@@ -1,8 +1,9 @@
 package br.licitacoesecontratos.model.views;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class AnoVsValor {
+public class AnoVsValor  implements Serializable {
 	
 	//Ano da licitação
 	private String anoHomologacao;

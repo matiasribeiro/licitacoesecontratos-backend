@@ -1,8 +1,9 @@
 package br.licitacoesecontratos.model.views;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class OrgaoVsValor {
+public class OrgaoVsValor implements Serializable {
 	
 	//Nome do orgão da administração
 	private String nomeJuridicionado;

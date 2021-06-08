@@ -1,8 +1,9 @@
 package br.licitacoesecontratos.model.views;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class LicitacoesSum {
+public class LicitacoesSum  implements Serializable {
 	
 	//Nome da entidade governamental
 	private String entidadeGovernamental;
