@@ -1,4 +1,4 @@
-package br.licitacoesecontratos.form;
+package br.licitacoesecontratos.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -11,7 +11,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import br.licitacoesecontratos.model.Contratos;
 import br.licitacoesecontratos.model.Licitacoes;
 
-public class LicitacoesForm implements Serializable {
+public class LicitacoesDTO implements Serializable {
 	
 	/**
 	 * 
@@ -39,72 +39,71 @@ public class LicitacoesForm implements Serializable {
 	
 	
 	private List<Contratos> contratos = new ArrayList<>();
-	private List<LicitacoesForm> licitacoesForm = new ArrayList<LicitacoesForm>();
+	private List<LicitacoesDTO> licitacoesDTO = new ArrayList<LicitacoesDTO>();
 	
 	
 	
-	public List<LicitacoesForm> converter(List<Licitacoes> licitacoes) throws JsonProcessingException {
+	public List<LicitacoesDTO> converter(List<Licitacoes> licitacoes) throws JsonProcessingException {
 		
 		for(Licitacoes licitacao : licitacoes) {
 
-			LicitacoesForm form = new LicitacoesForm();
+			LicitacoesDTO dto = new LicitacoesDTO();
 			
-			form.setId(licitacao.getId().toString());
-			form.setNumero(licitacao.getNumero());
-			form.setObjetivo(licitacao.getObjetivo());
-			form.setModalidade(licitacao.getModalidade());
-			form.setValorLicitado(licitacao.getValorLicitado());
+			dto.setId(licitacao.getId().toString());
+			dto.setNumero(licitacao.getNumero());
+			dto.setObjetivo(licitacao.getObjetivo());
+			dto.setModalidade(licitacao.getModalidade());
+			dto.setValorLicitado(licitacao.getValorLicitado());
 			
-			form.setProtocolo(licitacao.getProtocolo());
-			form.setMunicipio(licitacao.getMunicipio().replace("NaN", ""));
-			form.setCodigoUnidadeGestora(licitacao.getCodigoUnidadeGestora());
-			form.setIdJuridicionado(licitacao.getIdJuridicionado());
-			form.setNomeJuridicionado(licitacao.getNomeJuridicionado());
-			form.setValorEstimado(BigDecimal.valueOf(Double.parseDouble(licitacao.getValorEstimado().replace("NaN", "0"))));
-			form.setDataHomologacao(licitacao.getDataHomologacao());
-			form.setAnoHomologacao(licitacao.getAnoHomologacao());
-			form.setNomeEstagioProcessual(licitacao.getNomeEstagioProcessual());
-			form.setNomeSetorAtual(licitacao.getNomeSetorAtual());
-			form.setUrl(licitacao.getUrl());
-			form.setEntidadeGovernamental(licitacao.getEntidadeGovernamental());
-			form.setNumeroProcesso(licitacao.getNumeroProcesso());
+			dto.setProtocolo(licitacao.getProtocolo());
+			dto.setMunicipio(licitacao.getMunicipio().replace("NaN", ""));
+			dto.setCodigoUnidadeGestora(licitacao.getCodigoUnidadeGestora());
+			dto.setIdJuridicionado(licitacao.getIdJuridicionado());
+			dto.setNomeJuridicionado(licitacao.getNomeJuridicionado());
+			dto.setValorEstimado(BigDecimal.valueOf(Double.parseDouble(licitacao.getValorEstimado().replace("NaN", "0"))));
+			dto.setDataHomologacao(licitacao.getDataHomologacao());
+			dto.setAnoHomologacao(licitacao.getAnoHomologacao());
+			dto.setNomeEstagioProcessual(licitacao.getNomeEstagioProcessual());
+			dto.setNomeSetorAtual(licitacao.getNomeSetorAtual());
+			dto.setUrl(licitacao.getUrl());
+			dto.setEntidadeGovernamental(licitacao.getEntidadeGovernamental());
+			dto.setNumeroProcesso(licitacao.getNumeroProcesso());
 			
-			//form.setContratos(licitacao.getContratos());
-
-			licitacoesForm.add(form);
+			licitacoesDTO.add(dto);
 		}
-		return licitacoesForm;
+		return licitacoesDTO;
 	}
 	
-	public LicitacoesForm converter(Licitacoes licitacao) throws JsonProcessingException {
+	public LicitacoesDTO converter(Licitacoes licitacao) throws JsonProcessingException {
 		
 
-		LicitacoesForm form = new LicitacoesForm();
+		LicitacoesDTO dtoLicitacoes = new LicitacoesDTO();
 		
-		form.setId(licitacao.getId().toString());
-		form.setNumero(licitacao.getNumero());
-		form.setObjetivo(licitacao.getObjetivo());
-		form.setModalidade(licitacao.getModalidade());
-		form.setValorLicitado(licitacao.getValorLicitado());
+		dtoLicitacoes.setId(licitacao.getId().toString());
+		dtoLicitacoes.setNumero(licitacao.getNumero());
+		dtoLicitacoes.setObjetivo(licitacao.getObjetivo());
+		dtoLicitacoes.setModalidade(licitacao.getModalidade());
+		dtoLicitacoes.setValorLicitado(licitacao.getValorLicitado());
 		
-		form.setProtocolo(licitacao.getProtocolo());
-		form.setMunicipio(licitacao.getMunicipio().replace("NaN", ""));
-		form.setCodigoUnidadeGestora(licitacao.getCodigoUnidadeGestora());
-		form.setIdJuridicionado(licitacao.getIdJuridicionado());
-		form.setNomeJuridicionado(licitacao.getNomeJuridicionado());
-		form.setValorEstimado(BigDecimal.valueOf(Double.parseDouble(licitacao.getValorEstimado().replace("NaN", "0"))));
-		form.setDataHomologacao(licitacao.getDataHomologacao());
-		form.setAnoHomologacao(licitacao.getAnoHomologacao());
-		form.setNomeEstagioProcessual(licitacao.getNomeEstagioProcessual());
-		form.setNomeSetorAtual(licitacao.getNomeSetorAtual());
-		form.setUrl(licitacao.getUrl());
-		form.setEntidadeGovernamental(licitacao.getEntidadeGovernamental());
-		form.setNumeroProcesso(licitacao.getNumeroProcesso());
+		dtoLicitacoes.setProtocolo(licitacao.getProtocolo());
+		dtoLicitacoes.setMunicipio(licitacao.getMunicipio().replace("NaN", ""));
+		dtoLicitacoes.setCodigoUnidadeGestora(licitacao.getCodigoUnidadeGestora());
+		dtoLicitacoes.setIdJuridicionado(licitacao.getIdJuridicionado());
+		dtoLicitacoes.setNomeJuridicionado(licitacao.getNomeJuridicionado());
+		dtoLicitacoes.setValorEstimado(BigDecimal.valueOf(Double.parseDouble(licitacao.getValorEstimado().replace("NaN", "0"))));
+		dtoLicitacoes.setDataHomologacao(licitacao.getDataHomologacao());
+		dtoLicitacoes.setAnoHomologacao(licitacao.getAnoHomologacao());
+		dtoLicitacoes.setNomeEstagioProcessual(licitacao.getNomeEstagioProcessual());
+		dtoLicitacoes.setNomeSetorAtual(licitacao.getNomeSetorAtual());
+		dtoLicitacoes.setUrl(licitacao.getUrl());
+		dtoLicitacoes.setEntidadeGovernamental(licitacao.getEntidadeGovernamental());
+		dtoLicitacoes.setNumeroProcesso(licitacao.getNumeroProcesso());
 		
-		//form.setContratos(licitacao.getContratos());
-
-		return form;
+		return dtoLicitacoes;
 	}
+
+	
+	
 	
 	public String getId() {
 		return id;
@@ -129,215 +128,133 @@ public class LicitacoesForm implements Serializable {
 	public void setObjetivo(String objetivo) {
 		this.objetivo = objetivo;
 	}
+
 	public String getModalidade() {
 		return modalidade;
 	}
+
 	public void setModalidade(String modalidade) {
 		this.modalidade = modalidade;
 	}
+
 	public BigDecimal getValorLicitado() {
 		return valorLicitado;
 	}
+
 	public void setValorLicitado(BigDecimal valorLicitado) {
 		this.valorLicitado = valorLicitado;
 	}
-
-
-
 
 	public String getProtocolo() {
 		return protocolo;
 	}
 
-
-
-
 	public void setProtocolo(String protocolo) {
 		this.protocolo = protocolo;
 	}
-
-
-
 
 	public String getMunicipio() {
 		return municipio;
 	}
 
-
-
-
 	public void setMunicipio(String municipio) {
 		this.municipio = municipio;
 	}
-
-
-
 
 	public int getCodigoUnidadeGestora() {
 		return codigoUnidadeGestora;
 	}
 
-
-
-
 	public void setCodigoUnidadeGestora(int codigoUnidadeGestora) {
 		this.codigoUnidadeGestora = codigoUnidadeGestora;
 	}
-
-
-
 
 	public int getIdJuridicionado() {
 		return idJuridicionado;
 	}
 
-
-
-
 	public void setIdJuridicionado(int idJuridicionado) {
 		this.idJuridicionado = idJuridicionado;
 	}
-
-
-
 
 	public String getNomeJuridicionado() {
 		return nomeJuridicionado;
 	}
 
-
-
-
 	public void setNomeJuridicionado(String nomeJuridicionado) {
 		this.nomeJuridicionado = nomeJuridicionado;
 	}
-
-
-
 
 	public BigDecimal getValorEstimado() {
 		return valorEstimado;
 	}
 
-
-
-
 	public void setValorEstimado(BigDecimal valorEstimado) {
 		this.valorEstimado = valorEstimado;
 	}
-
-
-
 
 	public String getDataHomologacao() {
 		return dataHomologacao;
 	}
 
-
-
-
 	public void setDataHomologacao(String dataHomologacao) {
 		this.dataHomologacao = dataHomologacao;
 	}
-
-
-
 
 	public String getAnoHomologacao() {
 		return anoHomologacao;
 	}
 
-
-
-
 	public void setAnoHomologacao(String anoHomologacao) {
 		this.anoHomologacao = anoHomologacao;
 	}
-
-
-
 
 	public String getNomeEstagioProcessual() {
 		return nomeEstagioProcessual;
 	}
 
-
-
-
 	public void setNomeEstagioProcessual(String nomeEstagioProcessual) {
 		this.nomeEstagioProcessual = nomeEstagioProcessual;
 	}
-
-
-
 
 	public String getNomeSetorAtual() {
 		return nomeSetorAtual;
 	}
 
-
-
-
 	public void setNomeSetorAtual(String nomeSetorAtual) {
 		this.nomeSetorAtual = nomeSetorAtual;
 	}
-
-
-
 
 	public String getUrl() {
 		return url;
 	}
 
-
-
-
 	public void setUrl(String url) {
 		this.url = url;
 	}
-
-
-
 
 	public String getEntidadeGovernamental() {
 		return entidadeGovernamental;
 	}
 
-
-
-
 	public void setEntidadeGovernamental(String entidadeGovernamental) {
 		this.entidadeGovernamental = entidadeGovernamental;
 	}
-
-
-
 
 	public String getNumeroProcesso() {
 		return numeroProcesso;
 	}
 
-
-
-
 	public void setNumeroProcesso(String numeroProcesso) {
 		this.numeroProcesso = numeroProcesso;
 	}
-
-
-
 
 	public List<Contratos> getContratos() {
 		return contratos;
 	}
 
-
-
-
 	public void setContratos(List<Contratos> contratos) {
 		this.contratos = contratos;
 	}
-
-	
 	
 }

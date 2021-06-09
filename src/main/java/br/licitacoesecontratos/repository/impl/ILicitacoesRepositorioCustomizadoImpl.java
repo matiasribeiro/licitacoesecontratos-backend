@@ -7,14 +7,17 @@ import static org.springframework.data.mongodb.core.aggregation.Aggregation.newA
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.project;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.sort;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.AccumulatorOperators;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
+import org.springframework.data.mongodb.core.aggregation.ConditionalOperators;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
@@ -25,7 +28,10 @@ import br.licitacoesecontratos.model.views.LicitacoesSum;
 import br.licitacoesecontratos.model.views.OrgaoVsValor;
 import br.licitacoesecontratos.repository.ILicitacoesRepositorioCustomizado;
 
-public class ILicitacoesRepositorioCustomizadoImpl implements ILicitacoesRepositorioCustomizado {
+public class ILicitacoesRepositorioCustomizadoImpl implements ILicitacoesRepositorioCustomizado, Serializable {
+
+
+	private static final long serialVersionUID = 1L;
 
 	@Autowired 
 	private MongoTemplate mongoTemplate;
@@ -58,7 +64,7 @@ public class ILicitacoesRepositorioCustomizadoImpl implements ILicitacoesReposit
         
         return result;
 	}
-
+	
 	@Override
 	public List<LicitacoesSum> getLicitacoesSoma() {
 		Aggregation agg = newAggregation(
@@ -176,8 +182,6 @@ public class ILicitacoesRepositorioCustomizadoImpl implements ILicitacoesReposit
         return result;
 	}
 	
-	
-	
 	@Override
 	public List<AnoVsValor> getAnosSumValor(int entidadeGovernamental) {
 		Aggregation agg = newAggregation(
@@ -192,6 +196,23 @@ public class ILicitacoesRepositorioCustomizadoImpl implements ILicitacoesReposit
         
         return result;
 	}
+	
+	@Override
+	public List<AnoVsValor> getContratosAnosSumValor(int entidadeGovernamental) {
+		Aggregation agg = newAggregation(
+            match(Criteria.where("entidadeGovernamental").is(getEntidade(entidadeGovernamental))),
+            group("anoHomologacao").sum(AccumulatorOperators.Sum.sumOf("contratos.valorProposta")).as("valorTotal"),
+            project("valorTotal").and("anoHomologacao").previousOperation(),
+            sort(Sort.Direction.ASC, "anoHomologacao")
+        );
+
+        AggregationResults<AnoVsValor> groupResults = mongoTemplate.aggregate(agg, Licitacoes.class, AnoVsValor.class);
+        List<AnoVsValor> result = groupResults.getMappedResults();
+        
+        return result;
+	}
+	
+	
 
 	private String getEntidade(int entidadeGovernamental) {
 		if(entidadeGovernamental == Licitacoes.GOVERNO_ESTADO_PB)

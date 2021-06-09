@@ -5,13 +5,14 @@ import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Sort;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.licitacoesecontratos.form.ContratosForm;
+import br.licitacoesecontratos.dto.ContratosDTO;
 import br.licitacoesecontratos.model.Licitacoes;
 import br.licitacoesecontratos.repository.ILicitacoesRepositorio;
 
@@ -26,15 +27,10 @@ public class ContratosController {
 
 	@GetMapping
 	@Cacheable(value = "listarTodosContratos", key="#root.method.name")
-	public Collection<ContratosForm> listarTodos() {
-		
-		
-		List<Licitacoes> licitacoes = licitacoesRepositorio.findAll();
-		Collection<ContratosForm> licitacaoGovForm = new ContratosForm().converter(licitacoes);
-		
-		
-		
-		return new ArrayList<>(licitacaoGovForm);
+	public Collection<ContratosDTO> listarTodos() {
+		List<Licitacoes> licitacoes = licitacoesRepositorio.findAllByOrderByEntidadeGovernamentalDesc();
+		Collection<ContratosDTO> licitacaoGovDTO = new ContratosDTO().converter(licitacoes);
+		return new ArrayList<>(licitacaoGovDTO);
 	}
 	
 	

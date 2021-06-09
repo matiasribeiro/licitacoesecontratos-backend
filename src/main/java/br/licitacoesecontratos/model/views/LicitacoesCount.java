@@ -1,6 +1,8 @@
 package br.licitacoesecontratos.model.views;
 
-public class LicitacoesCount {
+import java.io.Serializable;
+
+public class LicitacoesCount implements Serializable {
 	
 	//Nome da entidade governamental
 	private String entidadeGovernamental;

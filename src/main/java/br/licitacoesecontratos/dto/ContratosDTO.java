@@ -1,18 +1,17 @@
-package br.licitacoesecontratos.form;
+package br.licitacoesecontratos.dto;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import br.licitacoesecontratos.model.Contratos;
 import br.licitacoesecontratos.model.Licitacoes;
 
 // necessário serializar a classe para o funcionamento do Redis
-public class ContratosForm implements Serializable {
+public class ContratosDTO implements Serializable {
 
 
 	private String numeroContrato;
@@ -22,19 +21,15 @@ public class ContratosForm implements Serializable {
 	private String contratante;
 	private String fornecedor;
 	private String Objeto;
-	private String valorProposta;
+	private BigDecimal valorProposta;
 	private String cpfCnpjProponente;
 	private String entidadeGovernamental;
 	
 	private String numeroLicitacao;
 	
+	private Map<String, ContratosDTO> map = new HashMap<String, ContratosDTO>();
 	
-	
-	private Set<Contratos> contratos = new HashSet<Contratos>();
-	private Set<ContratosForm> contratosForm = new HashSet<ContratosForm>();
-	private Map<String, ContratosForm> map = new HashMap<String, ContratosForm>();
-	
-	public Collection<ContratosForm> converter(List<Licitacoes> licitacoes) {
+	public Collection<ContratosDTO> converter(List<Licitacoes> licitacoes) {
 			
 			for(Licitacoes licitacao : licitacoes) {
 	
@@ -42,20 +37,20 @@ public class ContratosForm implements Serializable {
 					
 					for (Contratos c : licitacao.getContratos()) {
 						
-						ContratosForm form = new ContratosForm();
-						form.setNumeroContrato(c.getNumeroContrato());
-						form.setNumeroProcessoLicitacao(c.getNumeroProcessoLicitacao());
-						form.setDataInicio(c.getDataInicio());
-						form.setDataFinal(c.getDataFinal());
-						form.setContratante(c.getContratante());
-						form.setFornecedor(c.getFornecedor());
-						form.setObjeto(c.getObjeto());
-						form.setValorProposta(c.getValorProposta());
-						form.setCpfCnpjProponente(c.getCpfCnpjProponente());
-						form.setNumeroLicitacao(licitacao.getNumero());
-						form.setEntidadeGovernamental(licitacao.getEntidadeGovernamental());
+						ContratosDTO dto = new ContratosDTO();
+						dto.setNumeroContrato(c.getNumeroContrato());
+						dto.setNumeroProcessoLicitacao(c.getNumeroProcessoLicitacao());
+						dto.setDataInicio(c.getDataInicio());
+						dto.setDataFinal(c.getDataFinal());
+						dto.setContratante(c.getContratante());
+						dto.setFornecedor(c.getFornecedor());
+						dto.setObjeto(c.getObjeto());
+						dto.setValorProposta(c.getValorProposta());
+						dto.setCpfCnpjProponente(c.getCpfCnpjProponente());
+						dto.setNumeroLicitacao(licitacao.getNumero());
+						dto.setEntidadeGovernamental(licitacao.getEntidadeGovernamental());
 						
-						map.put(form.getNumeroContrato(), form);						
+						map.put(dto.getNumeroContrato(), dto);						
 					}
 				}
 			}
@@ -108,10 +103,10 @@ public class ContratosForm implements Serializable {
 	public void setObjeto(String objeto) {
 		Objeto = objeto;
 	}
-	public String getValorProposta() {
+	public BigDecimal getValorProposta() {
 		return valorProposta;
 	}
-	public void setValorProposta(String valorProposta) {
+	public void setValorProposta(BigDecimal valorProposta) {
 		this.valorProposta = valorProposta;
 	}
 	public String getCpfCnpjProponente() {
