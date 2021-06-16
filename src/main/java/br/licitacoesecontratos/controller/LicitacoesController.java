@@ -18,6 +18,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import br.licitacoesecontratos.dto.LicitacoesDTO;
 import br.licitacoesecontratos.model.Licitacoes;
+import br.licitacoesecontratos.model.views.AnoEntidadeGovernamentalValor;
 import br.licitacoesecontratos.model.views.AnoVsValor;
 import br.licitacoesecontratos.model.views.LicitacoesCount;
 import br.licitacoesecontratos.model.views.LicitacoesSum;
@@ -84,6 +85,13 @@ public class LicitacoesController implements Serializable {
 	@GetMapping("/{entidadeGovernamental}/anos")
 	public List<AnoVsValor> listarAnosVsValores(@PathVariable int entidadeGovernamental) {
 		List<AnoVsValor> anosVsValores = licitacoesRepositorio.getAnosSumValor(entidadeGovernamental);
+		return anosVsValores;
+	}
+	
+	
+	@GetMapping("/anos")
+	public List<AnoEntidadeGovernamentalValor> getAnosSumValorTotal() {
+		List<AnoEntidadeGovernamentalValor> anosVsValores = licitacoesRepositorio.getAnosSumValorTotal();
 		return anosVsValores;
 	}
 	
