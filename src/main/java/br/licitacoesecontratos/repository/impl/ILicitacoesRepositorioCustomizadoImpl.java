@@ -22,6 +22,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
 import br.licitacoesecontratos.model.Licitacoes;
+import br.licitacoesecontratos.model.views.AnoEntidadeGovernamentalValor;
 import br.licitacoesecontratos.model.views.AnoVsValor;
 import br.licitacoesecontratos.model.views.LicitacoesCount;
 import br.licitacoesecontratos.model.views.LicitacoesSum;
@@ -193,6 +194,24 @@ public class ILicitacoesRepositorioCustomizadoImpl implements ILicitacoesReposit
 
         AggregationResults<AnoVsValor> groupResults = mongoTemplate.aggregate(agg, Licitacoes.class, AnoVsValor.class);
         List<AnoVsValor> result = groupResults.getMappedResults();
+        
+        return result;
+	}
+	
+	@Override
+	public List<AnoEntidadeGovernamentalValor> getAnosSumValorTotal() {
+		
+		Criteria criteria = new Criteria();
+		Aggregation agg = newAggregation(
+			match(criteria),
+			group("entidadeGovernamental","anoHomologacao")
+			.first("entidadeGovernamental").as("entidadeGovernamental")
+            .first("anoHomologacao").as("anoHomologacao").sum("valorLicitado").as("valorTotal"),
+            sort(Sort.Direction.ASC, "anoHomologacao")
+        );
+
+        AggregationResults<AnoEntidadeGovernamentalValor> groupResults = mongoTemplate.aggregate(agg, Licitacoes.class, AnoEntidadeGovernamentalValor.class);
+        List<AnoEntidadeGovernamentalValor> result = groupResults.getMappedResults();
         
         return result;
 	}

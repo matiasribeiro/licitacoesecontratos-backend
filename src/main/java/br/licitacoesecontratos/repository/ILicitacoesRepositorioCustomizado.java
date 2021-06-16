@@ -3,6 +3,7 @@ package br.licitacoesecontratos.repository;
 import java.util.List;
 
 import br.licitacoesecontratos.model.Licitacoes;
+import br.licitacoesecontratos.model.views.AnoEntidadeGovernamentalValor;
 import br.licitacoesecontratos.model.views.AnoVsValor;
 import br.licitacoesecontratos.model.views.LicitacoesCount;
 import br.licitacoesecontratos.model.views.LicitacoesSum;
@@ -40,5 +41,7 @@ public interface ILicitacoesRepositorioCustomizado {
 	
 	//Lista todos os anos vs somatório de valores dos contratos por entidade governamental
 	public List<AnoVsValor> getContratosAnosSumValor(int entidadeGovernamental);
+	
+	public List<AnoEntidadeGovernamentalValor> getAnosSumValorTotal();
 	
 }
