@@ -44,4 +44,7 @@ public interface ILicitacoesRepositorioCustomizado {
 	
 	public List<AnoEntidadeGovernamentalValor> getAnosSumValorTotal();
 	
+	public List<AnoEntidadeGovernamentalValor> getContratosAnosEntidadeGovernamentalSumValor();
+	
+	
 }
