@@ -101,6 +101,13 @@ public class LicitacoesController implements Serializable {
 		return anosVsValores;
 	}
 	
+	@GetMapping("/contratos/anos")
+	public List<AnoEntidadeGovernamentalValor> listarAnosValoresEntidadeGovernamentalContratos() {
+		List<AnoEntidadeGovernamentalValor> anosValoresEntidades = licitacoesRepositorio.getContratosAnosEntidadeGovernamentalSumValor();
+		return anosValoresEntidades;
+	}
+	
+	
 	@GetMapping("/{entidadeGovernamental}/orgaos")
 //	@Cacheable(value = "listarOrgaosVsValores", key="#root.method.name")
 	public List<OrgaoVsValor> listarOrgaosVsValores(@PathVariable int entidadeGovernamental) {

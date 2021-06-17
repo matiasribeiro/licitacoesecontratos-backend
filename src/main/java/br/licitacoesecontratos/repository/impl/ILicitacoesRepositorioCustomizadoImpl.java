@@ -231,6 +231,22 @@ public class ILicitacoesRepositorioCustomizadoImpl implements ILicitacoesReposit
         return result;
 	}
 	
+	@Override
+	public List<AnoEntidadeGovernamentalValor> getContratosAnosEntidadeGovernamentalSumValor() {
+		Aggregation agg = newAggregation(
+            group("anoHomologacao","entidadeGovernamental")
+            .first("entidadeGovernamental").as("entidadeGovernamental")
+            .first("anoHomologacao").as("anoHomologacao")
+            .sum(AccumulatorOperators.Sum.sumOf("contratos.valorProposta")).as("valorTotal"),
+            sort(Sort.Direction.ASC, "anoHomologacao")
+        );
+
+        AggregationResults<AnoEntidadeGovernamentalValor> groupResults = mongoTemplate.aggregate(agg, Licitacoes.class, AnoEntidadeGovernamentalValor.class);
+        List<AnoEntidadeGovernamentalValor> result = groupResults.getMappedResults();
+        
+        return result;
+	}
+	
 	
 
 	private String getEntidade(int entidadeGovernamental) {
