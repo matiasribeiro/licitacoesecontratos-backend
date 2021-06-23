@@ -41,7 +41,7 @@ public class LicitacoesController implements Serializable {
 	
 	
 	@GetMapping
-	@Cacheable(value = "listarTodasLicitacoes", key="#root.method.name")
+//	@Cacheable(value = "listarTodasLicitacoes", key="#root.method.name")
 	public List<LicitacoesDTO> listarTodas() throws JsonProcessingException {
 		List<Licitacoes> licitacoes = licitacoesRepositorio.findAll();
 		List<LicitacoesDTO> licitacoesDTO = new LicitacoesDTO().converter(licitacoes);
