@@ -255,6 +255,14 @@ public class ILicitacoesRepositorioCustomizadoImpl implements ILicitacoesReposit
 		return licitacao;
 	}
 
+	@Override
+	public List<Licitacoes> getLicitacoesOrgao(String idJuridicionado) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("idJuridicionado").is(idJuridicionado));
+		List<Licitacoes> licitacao = mongoTemplate.find(query, Licitacoes.class);
+		return licitacao;
+	}
+
 	private String getEntidade(int entidadeGovernamental) {
 		if(entidadeGovernamental == Licitacoes.GOVERNO_ESTADO_PB)
 			entidade = "Governo da Paraíba";
