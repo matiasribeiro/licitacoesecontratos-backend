@@ -150,6 +150,13 @@ public class LicitacoesController implements Serializable {
 		List<LicitacoesDTO> licitacoesDTO = new LicitacoesDTO().converter(licitacoes);
 		return licitacoesDTO;
 	}
+	
+	@GetMapping("/orgao/{idJuridicionado}")
+	public List<LicitacoesDTO> listarLicitacoesOrgao(@PathVariable String idJuridicionado) throws JsonProcessingException {
+		List<Licitacoes> licitacoes = licitacoesRepositorio.getLicitacoesOrgao(idJuridicionado);
+		List<LicitacoesDTO> licitacoesDTO = new LicitacoesDTO().converter(licitacoes);
+		return licitacoesDTO;
+	}
 }
 
 
