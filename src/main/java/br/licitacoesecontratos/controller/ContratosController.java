@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.S
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,14 +27,19 @@ public class ContratosController {
 	
 
 	@GetMapping
-	@Cacheable(value = "listarTodosContratos", key="#root.method.name")
+//	@Cacheable(value = "listarTodosContratos", key="#root.method.name")
 	public Collection<ContratosDTO> listarTodos() {
 		List<Licitacoes> licitacoes = licitacoesRepositorio.findAllByOrderByEntidadeGovernamentalDesc();
 		Collection<ContratosDTO> licitacaoGovDTO = new ContratosDTO().converter(licitacoes);
 		return new ArrayList<>(licitacaoGovDTO);
 	}
 	
-	
+	@GetMapping("/fornecedor/{cpfCnpjProponente}")
+	public Collection<ContratosDTO> listarContratosFornecedor(@PathVariable String cpfCnpjProponente) {
+		List<Licitacoes> licitacoes = licitacoesRepositorio.getContratosFornecedor(cpfCnpjProponente);
+		Collection<ContratosDTO> licitacaoGovDTO = new ContratosDTO().converter(licitacoes);
+		return new ArrayList<>(licitacaoGovDTO);
+	}
 	
 
 }

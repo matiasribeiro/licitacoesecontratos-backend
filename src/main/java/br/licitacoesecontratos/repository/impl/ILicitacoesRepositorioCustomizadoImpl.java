@@ -246,8 +246,14 @@ public class ILicitacoesRepositorioCustomizadoImpl implements ILicitacoesReposit
         
         return result;
 	}
-	
-	
+
+	@Override
+	public List<Licitacoes> getContratosFornecedor(String cpfCnpjProponente) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("contratos.cpfCnpjProponente").is(cpfCnpjProponente));
+		List<Licitacoes> licitacao = mongoTemplate.find(query, Licitacoes.class);
+		return licitacao;
+	}
 
 	private String getEntidade(int entidadeGovernamental) {
 		if(entidadeGovernamental == Licitacoes.GOVERNO_ESTADO_PB)
