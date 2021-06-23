@@ -36,7 +36,7 @@ public class ContratosController {
 	
 	@GetMapping("/fornecedor/{cpfCnpjProponente}")
 	public Collection<ContratosDTO> listarContratosFornecedor(@PathVariable String cpfCnpjProponente) {
-		List<Licitacoes> licitacoes = licitacoesRepositorio.getContratosFornecedor(cpfCnpjProponente);
+		List<Licitacoes> licitacoes = licitacoesRepositorio.getLicitacoesFornecedor(cpfCnpjProponente);
 		Collection<ContratosDTO> licitacaoGovDTO = new ContratosDTO().converter(licitacoes);
 		return new ArrayList<>(licitacaoGovDTO);
 	}
