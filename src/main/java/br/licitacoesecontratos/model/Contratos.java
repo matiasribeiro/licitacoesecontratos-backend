@@ -56,8 +56,8 @@ public class Contratos implements Serializable {
 	@Field(name="url_contrato")
 	private String url;
 
-	@Field(name="cpf_cnpj_proponente")
-	private String cpfCnpjProponente;
+	@Field(name="cpf_cnpj_fornecedor")
+	private String cpfCnpjFornecedor;
 
 	
 	public Contratos() {}
@@ -144,12 +144,12 @@ public class Contratos implements Serializable {
 
 
 	public String getCpfCnpjProponente() {
-		return cpfCnpjProponente;
+		return cpfCnpjFornecedor;
 	}
 
 
 	public void setCpfCnpjProponente(String cpfCnpjProponente) {
-		this.cpfCnpjProponente = cpfCnpjProponente;
+		this.cpfCnpjFornecedor = cpfCnpjProponente;
 	}
 
 
@@ -241,7 +241,7 @@ public class Contratos implements Serializable {
 				+ ", valorTotal=" + valorTotal + ", codigoContrato=" + codigoContrato + ", numeroRegistroCGE="
 				+ numeroRegistroCGE + ", municipio=" + municipio + ", nomeGestorContrato=" + nomeGestorContrato
 				+ ", numeroPortaria=" + numeroPortaria + ", dataPublicacaoPortaria=" + dataPublicacaoPortaria + ", url="
-				+ url + ", cpfCnpjProponente=" + cpfCnpjProponente + "]";
+				+ url + ", cpfCnpjProponente=" + cpfCnpjFornecedor + "]";
 	}
 	
 }

@@ -9,6 +9,6 @@ import br.licitacoesecontratos.model.Licitacoes;
 
 public interface ILicitacoesRepositorio extends MongoRepository<Licitacoes,String>, ILicitacoesRepositorioCustomizado {
 	
-	public List<Licitacoes> findAllByOrderByEntidadeGovernamentalDesc();   
+	public List<Licitacoes> findAll();   
 	
 }
