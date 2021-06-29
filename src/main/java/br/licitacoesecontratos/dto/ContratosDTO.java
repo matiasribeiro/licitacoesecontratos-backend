@@ -22,7 +22,7 @@ public class ContratosDTO implements Serializable {
 	private String fornecedor;
 	private String Objeto;
 	private BigDecimal valorProposta;
-	private String cpfCnpjProponente;
+	private String cpfCnpjFornecedor;
 	private String entidadeGovernamental;
 	
 	private String numeroLicitacao;
@@ -46,7 +46,7 @@ public class ContratosDTO implements Serializable {
 						dto.setFornecedor(c.getFornecedor());
 						dto.setObjeto(c.getObjeto());
 						dto.setValorProposta(c.getValorProposta());
-						dto.setCpfCnpjProponente(c.getCpfCnpjProponente());
+						dto.setCpfCnpjFornecedor(c.getCpfCnpjProponente());
 						dto.setNumeroLicitacao(licitacao.getNumero());
 						dto.setEntidadeGovernamental(licitacao.getEntidadeGovernamental());
 						
@@ -109,11 +109,11 @@ public class ContratosDTO implements Serializable {
 	public void setValorProposta(BigDecimal valorProposta) {
 		this.valorProposta = valorProposta;
 	}
-	public String getCpfCnpjProponente() {
-		return cpfCnpjProponente;
+	public String getCpfCnpjFornecedor() {
+		return cpfCnpjFornecedor;
 	}
-	public void setCpfCnpjProponente(String cpfCnpjProponente) {
-		this.cpfCnpjProponente = cpfCnpjProponente;
+	public void setCpfCnpjFornecedor(String cpfCnpjFornecedor) {
+		this.cpfCnpjFornecedor = cpfCnpjFornecedor;
 	}
 	public String getNumeroLicitacao() {
 		return numeroLicitacao;

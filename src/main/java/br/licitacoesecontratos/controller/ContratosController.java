@@ -24,12 +24,11 @@ public class ContratosController {
 	
 	@Autowired
 	private ILicitacoesRepositorio licitacoesRepositorio;
-	
 
 	@GetMapping
-//	@Cacheable(value = "listarTodosContratos", key="#root.method.name")
+	@Cacheable(value = "listarTodosContratos", key="#root.method.name")
 	public Collection<ContratosDTO> listarTodos() {
-		List<Licitacoes> licitacoes = licitacoesRepositorio.findAllByOrderByEntidadeGovernamentalDesc();
+		List<Licitacoes> licitacoes = licitacoesRepositorio.findAll();
 		Collection<ContratosDTO> licitacaoGovDTO = new ContratosDTO().converter(licitacoes);
 		return new ArrayList<>(licitacaoGovDTO);
 	}
