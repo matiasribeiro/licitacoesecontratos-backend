@@ -248,9 +248,9 @@ public class ILicitacoesRepositorioCustomizadoImpl implements ILicitacoesReposit
 	}
 
 	@Override
-	public List<Licitacoes> getLicitacoesFornecedor(String cpfCnpjProponente) {
+	public List<Licitacoes> getLicitacoesFornecedor(String cpfCnpjFornecedor) {
 		Query query = new Query();
-		query.addCriteria(Criteria.where("contratos.cpfCnpjProponente").is(cpfCnpjProponente));
+		query.addCriteria(Criteria.where("contratos.cpfCnpjFornecedor").is(cpfCnpjFornecedor));
 		List<Licitacoes> licitacao = mongoTemplate.find(query, Licitacoes.class);
 		return licitacao;
 	}

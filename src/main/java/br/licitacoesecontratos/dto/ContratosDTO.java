@@ -46,7 +46,7 @@ public class ContratosDTO implements Serializable {
 						dto.setFornecedor(c.getFornecedor());
 						dto.setObjeto(c.getObjeto());
 						dto.setValorProposta(c.getValorProposta());
-						dto.setCpfCnpjFornecedor(c.getCpfCnpjProponente());
+						dto.setCpfCnpjFornecedor(c.getCpfCnpjFornecedor());
 						dto.setNumeroLicitacao(licitacao.getNumero());
 						dto.setEntidadeGovernamental(licitacao.getEntidadeGovernamental());
 						
