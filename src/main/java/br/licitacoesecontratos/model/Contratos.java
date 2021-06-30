@@ -143,13 +143,13 @@ public class Contratos implements Serializable {
 	}
 
 
-	public String getCpfCnpjProponente() {
+	public String getCpfCnpjFornecedor() {
 		return cpfCnpjFornecedor;
 	}
 
 
-	public void setCpfCnpjProponente(String cpfCnpjProponente) {
-		this.cpfCnpjFornecedor = cpfCnpjProponente;
+	public void setCpfCnpjFornecedor(String cpfCnpjFornecedor) {
+		this.cpfCnpjFornecedor = cpfCnpjFornecedor;
 	}
 
 
@@ -241,7 +241,7 @@ public class Contratos implements Serializable {
 				+ ", valorTotal=" + valorTotal + ", codigoContrato=" + codigoContrato + ", numeroRegistroCGE="
 				+ numeroRegistroCGE + ", municipio=" + municipio + ", nomeGestorContrato=" + nomeGestorContrato
 				+ ", numeroPortaria=" + numeroPortaria + ", dataPublicacaoPortaria=" + dataPublicacaoPortaria + ", url="
-				+ url + ", cpfCnpjProponente=" + cpfCnpjFornecedor + "]";
+				+ url + ", cpfCnpjFornecedor=" + cpfCnpjFornecedor + "]";
 	}
 	
 }
