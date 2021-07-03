@@ -46,7 +46,7 @@ public interface ILicitacoesRepositorioCustomizado {
 	
 	public List<AnoEntidadeGovernamentalValor> getContratosAnosEntidadeGovernamentalSumValor();
 	
-	public List<Licitacoes> getLicitacoesFornecedor(String cpfCnpjProponente); 
+	public List<Licitacoes> getLicitacoesFornecedor(String cpfCnpjFornecedor); 
 	
 	public List<Licitacoes> getLicitacoesOrgao(String idJuridicionado);  
 }

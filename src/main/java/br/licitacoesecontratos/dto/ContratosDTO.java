@@ -31,12 +31,46 @@ public class ContratosDTO implements Serializable {
 	
 	public Collection<ContratosDTO> converter(List<Licitacoes> licitacoes) {
 			
-			for(Licitacoes licitacao : licitacoes) {
-	
-				if((licitacao.getContratos() != null) && (!licitacao.getContratos().isEmpty())) {
+		int contadorContratos = 0;
+		
+		for(Licitacoes licitacao : licitacoes) {
+
+			if((licitacao.getContratos() != null) && (!licitacao.getContratos().isEmpty())) {
+				
+				for (Contratos c : licitacao.getContratos()) {
 					
-					for (Contratos c : licitacao.getContratos()) {
-						
+					ContratosDTO dto = new ContratosDTO();
+					dto.setNumeroContrato(c.getNumeroContrato());
+					dto.setNumeroProcessoLicitacao(c.getNumeroProcessoLicitacao());
+					dto.setDataInicio(c.getDataInicio());
+					dto.setDataFinal(c.getDataFinal());
+					dto.setContratante(c.getContratante());
+					dto.setFornecedor(c.getFornecedor());
+					dto.setObjeto(c.getObjeto());
+					dto.setValorProposta(c.getValorProposta());
+					dto.setCpfCnpjFornecedor(c.getCpfCnpjFornecedor());
+					dto.setNumeroLicitacao(licitacao.getNumero());
+					dto.setEntidadeGovernamental(licitacao.getEntidadeGovernamental());
+					
+					map.put(String.valueOf(++contadorContratos), dto);						
+				}
+			}
+		}
+			
+		return map.values();
+	}
+
+	public Collection<ContratosDTO> converter(List<Licitacoes> licitacoes, String cpfCnpjFornecedor) {
+		
+		int contadorContratos = 0;
+		
+		for(Licitacoes licitacao : licitacoes) {
+
+			if((licitacao.getContratos() != null) && (!licitacao.getContratos().isEmpty())) {
+				
+				for (Contratos c : licitacao.getContratos()) {
+					
+					if(c.getCpfCnpjFornecedor().equalsIgnoreCase(cpfCnpjFornecedor)) {
 						ContratosDTO dto = new ContratosDTO();
 						dto.setNumeroContrato(c.getNumeroContrato());
 						dto.setNumeroProcessoLicitacao(c.getNumeroProcessoLicitacao());
@@ -50,16 +84,14 @@ public class ContratosDTO implements Serializable {
 						dto.setNumeroLicitacao(licitacao.getNumero());
 						dto.setEntidadeGovernamental(licitacao.getEntidadeGovernamental());
 						
-						map.put(dto.getNumeroContrato(), dto);						
+						map.put(String.valueOf(++contadorContratos), dto);	
 					}
 				}
 			}
+		}
 			
 		return map.values();
 	}
-
-	
-	
 	
 	public String getNumeroContrato() {
 		return numeroContrato;
