@@ -144,9 +144,9 @@ public class LicitacoesController implements Serializable {
 	}
 	
 	
-	@GetMapping("/fornecedor/{cpfCnpjProponente}")
-	public List<LicitacoesDTO> listarLicitacoesFornecedor(@PathVariable String cpfCnpjProponente) throws JsonProcessingException {
-		List<Licitacoes> licitacoes = licitacoesRepositorio.getLicitacoesFornecedor(cpfCnpjProponente);
+	@GetMapping("/fornecedor/{cpfCnpjFornecedor}")
+	public List<LicitacoesDTO> listarLicitacoesFornecedor(@PathVariable String cpfCnpjFornecedor) throws JsonProcessingException {
+		List<Licitacoes> licitacoes = licitacoesRepositorio.getLicitacoesFornecedor(cpfCnpjFornecedor);
 		List<LicitacoesDTO> licitacoesDTO = new LicitacoesDTO().converter(licitacoes);
 		return licitacoesDTO;
 	}

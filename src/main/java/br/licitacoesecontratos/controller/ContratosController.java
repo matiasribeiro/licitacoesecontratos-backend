@@ -33,11 +33,11 @@ public class ContratosController {
 		return new ArrayList<>(licitacaoGovDTO);
 	}
 	
-	@GetMapping("/fornecedor/{cpfCnpjProponente}")
-	public Collection<ContratosDTO> listarContratosFornecedor(@PathVariable String cpfCnpjProponente) {
-		List<Licitacoes> licitacoes = licitacoesRepositorio.getLicitacoesFornecedor(cpfCnpjProponente);
-		Collection<ContratosDTO> licitacaoGovDTO = new ContratosDTO().converter(licitacoes);
-		return new ArrayList<>(licitacaoGovDTO);
+	@GetMapping("/fornecedor/{cpfCnpjFornecedor}")
+	public Collection<ContratosDTO> listarContratosFornecedor(@PathVariable String cpfCnpjFornecedor) {
+		List<Licitacoes> licitacoes = licitacoesRepositorio.getLicitacoesFornecedor(cpfCnpjFornecedor);
+		Collection<ContratosDTO> contratosGovDTO = new ContratosDTO().converter(licitacoes, cpfCnpjFornecedor);
+		return new ArrayList<>(contratosGovDTO);
 	}
 	
 
